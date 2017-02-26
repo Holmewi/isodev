@@ -1,6 +1,6 @@
 "use strict";
 
-var Movement = require("./app/movement");
+var Controls = require("./app/controls");
 var Player = require("./app/classes/Player");
 
 var width = window.innerWidth;
@@ -25,7 +25,7 @@ var check;
 var controls;
 var cN, cS, cE, cW, cSE, cNE, cSW, cNW;
 
-var Ndown = false, Sdown = false, Edown = false, Wdown = false, SEdown = false, NEdown = false, SWdown = false, NWdown = false;
+//var Ndown = false, Sdown = false, Edown = false, Wdown = false, SEdown = false, NEdown = false, SWdown = false, NWdown = false;
 
 var isEven = function(someNumber){
     return (someNumber % 2 == 0) ? true : false;
@@ -396,44 +396,30 @@ var init = function () {
 		    
 		    controls.alpha = 0.6;
 		    
-	        // Creste the player
-	        //player = game.add.isoSprite(350, 280, 0, 'characterAnim', 0, obstacleGroup);
-	        
-	        player = new Player(game, "Player1");
+	        // Create the player	        
+	        player = new Player(game, obstacleGroup, "Player1");
 
-	        player.animation();
-
-
-	        console.log(player.name);
-	        player.sprite.alpha = 0.6;
-	                
-	        // add the animations from the spritesheet
-	        /*
-	        player.sprite.animations.add('S', [0, 1, 2, 3, 4, 5, 6, 7], 10, true);
-	        player.sprite.animations.add('SW', [8, 9, 10, 11, 12, 13, 14, 15], 10, true);
-	        player.sprite.animations.add('W', [16, 17, 18, 19, 20, 21, 22, 23], 10, true);
-	        player.sprite.animations.add('NW', [24, 25, 26, 27, 28, 29, 30, 31], 10, true);
-	        player.sprite.animations.add('N', [32, 33, 34, 35, 36, 37, 38, 39], 10, true);
-	        player.sprite.animations.add('NE', [40, 41, 42, 43, 44, 45, 46, 47], 10, true);
-	        player.sprite.animations.add('E', [48, 49, 50, 51, 52, 53, 54, 55], 10, true);
-	        player.sprite.animations.add('SE', [56, 57, 58, 59, 60, 61, 62, 63], 10, true);
-	        */
-
-	        player.sprite.anchor.set(0.5);
-	        
-	        // enable physics on the player
 	        game.physics.isoArcade.enable(player.sprite);
-	        player.sprite.body.collideWorldBounds = true;
 
 	        game.camera.follow(player.sprite);
 
-	        Movement.init( game );
+	        // Setup controls
+
+	        // Init movements
+	        this.controls = new Controls(game);
+
+	        
+	        //Movement.init(game);   
 	    },
 	    update: function () {
 	        
 	    	// Move the player
+
+	    	this.controls.input();
+	    	this.controls.movement(player.sprite);
+	    	/*
 	        var speed = 100;
-	       
+
 	        if (Ndown == true) {
 	        	player.sprite.body.velocity.y = -speed;
 	        	player.sprite.body.velocity.x = -speed;
@@ -517,7 +503,7 @@ var init = function () {
 	        {
 	        	player.sprite.animations.stop();
 	        }
-
+			*/
         
 	        game.physics.isoArcade.collide(obstacleGroup);
 	        

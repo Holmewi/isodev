@@ -1,9 +1,15 @@
 "use strict";
 
-function Player(game, name) {
+function Player(game, group, name) {
 	this.name = name;
 
-	this.sprite = game.add.isoSprite(350, 280, 0, 'characterAnim', 0, obstacleGroup);
+	this.sprite = game.add.isoSprite(350, 280, 0, 'characterAnim', 0, group);
+    this.sprite.alpha = 0.6;
+    this.sprite.anchor.set(0.5);
+    game.physics.isoArcade.enable(this.sprite);
+    this.sprite.body.collideWorldBounds = true;
+
+    this.animation();
 };
 
 Player.prototype.animation = function() {

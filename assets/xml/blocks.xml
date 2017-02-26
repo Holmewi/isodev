@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+	Probability
+	--------------------
+	The tag "prob" is the chance to get the item each 50 damage when harvesting
+	If prob is set to 1, there's a 100% chance to get the item
+	(Tools can both raise and lower the probability and the damage of a block)
+-->
+
+<blocks>
+	<block id="0" name="air">
+		<property name="Material" value="air" />
+	</block>
+	<block id="1" name="greyStone">
+		<property name="Sprite" value="0, 2" />
+		<property name="Hardness" value="350" />
+		<drop event="Harvest" name="greyRock" count="1" prob=".75" /> 
+		<drop event="Harvest" name="flintStone" count="1" prob=".05" />
+		<drop event="Destroy" name="greyRock" count="1" prob="1"/>
+	</block>
+	<block id="2" name="dirt">
+		<property name="Sprite" value="0, 1" />
+		<property name="Map.Color" value="" /> <!-- TODO: set RGB value -->
+		<property name="Hardness" value="50" />
+	</block>
+	<block id="3" name="waterSurface">
+		<property name="Unbreakable" value="true" />
+		<property name="Sprite" value="0, 3" />
+		<property name="Map.Color" value="" /> <!-- TODO: set RGB value -->
+	</block>
+	<block id="3" name="water">
+		<property name="Unbreakable" value="true" />
+		<property name="Sprite" value="0, 4" />	
+		<property name="Map.Color" value="" /> <!-- TODO: set RGB value -->
+	</block>
+</blocks>

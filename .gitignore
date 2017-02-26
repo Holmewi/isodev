@@ -1,0 +1,4 @@
+www/build/css/
+www/build/js/
+node_modules/
+*.DS_Store

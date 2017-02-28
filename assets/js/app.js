@@ -1,6 +1,6 @@
 "use strict";
 
-var Controls = require("./app/controls");
+var Controls = require("./app/classes/Controls");
 var Player = require("./app/classes/Player");
 
 var width = window.innerWidth;
@@ -419,7 +419,7 @@ var init = function () {
 
 	    	//this.controls.input(game, player.sprite);
 	    		
-	    	this.controls.movement(player.sprite, player.speed);
+	    	this.controls.movement(player);
 	    	/*
 	        var speed = 100;
 

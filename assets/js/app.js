@@ -23,7 +23,7 @@ var totalItemCount = 4; // total number of items to be collected
 var check;
 
 var controls;
-var cN, cS, cE, cW, cSE, cNE, cSW, cNW;
+// var cN, cS, cE, cW, cSE, cNE, cSW, cNW;
 
 //var Ndown = false, Sdown = false, Edown = false, Wdown = false, SEdown = false, NEdown = false, SWdown = false, NWdown = false;
 
@@ -252,154 +252,156 @@ var init = function () {
 		       updateEndText();
 		       	       
 		    // create control button sprites on the screen   
-		    cNW = game.add.sprite(0, 100, 'NW');  
-		    cNW.fixedToCamera = true;
-		    cNW.inputEnabled = true;
-		    cNW.events.onInputDown.add(onDown, this);
-		    cNW.events.onInputOver.add(onDown, this);
-		    cNW.events.onInputUp.add(onUp, this);
-		    cNW.events.onInputOut.add(onUp, this);
+		    // cNW = game.add.sprite(0, 100, 'NW');  
+		    // cNW.fixedToCamera = true;
+		    // cNW.inputEnabled = true;
+		    // cNW.events.onInputDown.add(onDown, this);
+		    // cNW.events.onInputOver.add(onDown, this);
+		    // cNW.events.onInputUp.add(onUp, this);
+		    // cNW.events.onInputOut.add(onUp, this);
 		    
-		    cW = game.add.sprite(0, 176, 'W');  
-		    cW.fixedToCamera = true;
-		    cW.inputEnabled = true;
-		    cW.events.onInputDown.add(onDown, this);
-		    cW.events.onInputOver.add(onDown, this);
-		    cW.events.onInputUp.add(onUp, this);
-		    cW.events.onInputOut.add(onUp, this);
+		    // cW = game.add.sprite(0, 176, 'W');  
+		    // cW.fixedToCamera = true;
+		    // cW.inputEnabled = true;
+		    // cW.events.onInputDown.add(onDown, this);
+		    // cW.events.onInputOver.add(onDown, this);
+		    // cW.events.onInputUp.add(onUp, this);
+		    // cW.events.onInputOut.add(onUp, this);
 		    
-		    cSW = game.add.sprite(0, 252, 'SW');  
-		    cSW.fixedToCamera = true;
-		    cSW.inputEnabled = true;
-		    cSW.events.onInputDown.add(onDown, this);
-		    cSW.events.onInputOver.add(onDown, this);
-		    cSW.events.onInputUp.add(onUp, this);
-		    cSW.events.onInputOut.add(onUp, this);
+		    // cSW = game.add.sprite(0, 252, 'SW');  
+		    // cSW.fixedToCamera = true;
+		    // cSW.inputEnabled = true;
+		    // cSW.events.onInputDown.add(onDown, this);
+		    // cSW.events.onInputOver.add(onDown, this);
+		    // cSW.events.onInputUp.add(onUp, this);
+		    // cSW.events.onInputOut.add(onUp, this);
 		    
-		    cN = game.add.sprite(76, 100, 'N');  
-		    cN.fixedToCamera = true;
-		    cN.inputEnabled = true;
-		    cN.events.onInputDown.add(onDown, this);
-		    cN.events.onInputOver.add(onDown, this);
-		    cN.events.onInputUp.add(onUp, this);
-		    cN.events.onInputOut.add(onUp, this);
+		    // cN = game.add.sprite(76, 100, 'N');  
+		    // cN.fixedToCamera = true;
+		    // cN.inputEnabled = true;
+		    // cN.events.onInputDown.add(onDown, this);
+		    // cN.events.onInputOver.add(onDown, this);
+		    // cN.events.onInputUp.add(onUp, this);
+		    // cN.events.onInputOut.add(onUp, this);
 		    
-		    cS = game.add.sprite(76, 252, 'S');  
-		    cS.fixedToCamera = true;
-		    cS.inputEnabled = true;   
-		    cS.events.onInputDown.add(onDown, this);
-		    cS.events.onInputOver.add(onDown, this);
-		    cS.events.onInputUp.add(onUp, this);
-		    cS.events.onInputOut.add(onUp, this);
+		    // cS = game.add.sprite(76, 252, 'S');  
+		    // cS.fixedToCamera = true;
+		    // cS.inputEnabled = true;   
+		    // cS.events.onInputDown.add(onDown, this);
+		    // cS.events.onInputOver.add(onDown, this);
+		    // cS.events.onInputUp.add(onUp, this);
+		    // cS.events.onInputOut.add(onUp, this);
 		    
-		    cNE = game.add.sprite(152, 100, 'NE');
-		    cNE.fixedToCamera = true;
-		    cNE.inputEnabled = true;
-		    cNE.events.onInputDown.add(onDown, this);
-		    cNE.events.onInputOver.add(onDown, this);
-		    cNE.events.onInputUp.add(onUp, this);
-		    cNE.events.onInputOut.add(onUp, this);
+		    // cNE = game.add.sprite(152, 100, 'NE');
+		    // cNE.fixedToCamera = true;
+		    // cNE.inputEnabled = true;
+		    // cNE.events.onInputDown.add(onDown, this);
+		    // cNE.events.onInputOver.add(onDown, this);
+		    // cNE.events.onInputUp.add(onUp, this);
+		    // cNE.events.onInputOut.add(onUp, this);
 		    
-		    cE = game.add.sprite(152, 176, 'E');  
-		    cE.fixedToCamera = true;
-		    cE.inputEnabled = true;
-		    cE.events.onInputDown.add(onDown, this);
-		    cE.events.onInputOver.add(onDown, this);
-		    cE.events.onInputUp.add(onUp, this);
-		    cE.events.onInputOut.add(onUp, this);
+		    // cE = game.add.sprite(152, 176, 'E');  
+		    // cE.fixedToCamera = true;
+		    // cE.inputEnabled = true;
+		    // cE.events.onInputDown.add(onDown, this);
+		    // cE.events.onInputOver.add(onDown, this);
+		    // cE.events.onInputUp.add(onUp, this);
+		    // cE.events.onInputOut.add(onUp, this);
 		    
-		    cSE = game.add.sprite(152, 252, 'SE');  
-		    cSE.fixedToCamera = true;
-		    cSE.inputEnabled = true;
-		    cSE.events.onInputDown.add(onDown, this);
-		    cSE.events.onInputOver.add(onDown, this);
-		    cSE.events.onInputUp.add(onUp, this);
-		    cSE.events.onInputOut.add(onUp, this);
+		    // cSE = game.add.sprite(152, 252, 'SE');  
+		    // cSE.fixedToCamera = true;
+		    // cSE.inputEnabled = true;
+		    // cSE.events.onInputDown.add(onDown, this);
+		    // cSE.events.onInputOver.add(onDown, this);
+		    // cSE.events.onInputUp.add(onUp, this);
+		    // cSE.events.onInputOut.add(onUp, this);
 	        
 		    // create control functions for the control buttons
-		    function onDown(sprite, pointer) {
+		    // function onDown(sprite, pointer) {
 
-		    	if (sprite.key == "N") {
+		    // 	if (sprite.key == "N") {
 		    		
-		    		Ndown = true;
+		    // 		Ndown = true;
 			    	
-		    	}
+		    // 	}
 		    	
-		    	if (sprite.key == "S") {
+		    // 	if (sprite.key == "S") {
 		    		
-		    		Sdown = true;
+		    // 		Sdown = true;
 			    	
-		    	}
+		    // 	}
 		    	
-		    	if (sprite.key == "SE") {
+		    // 	if (sprite.key == "SE") {
 		    		
-		    		SEdown = true;
+		    // 		SEdown = true;
 			    	
-		    	}
+		    // 	}
 		    	
-		    	if (sprite.key == "SW") {
+		    // 	if (sprite.key == "SW") {
 		    		
-		    		SWdown = true;
+		    // 		SWdown = true;
 			    	
-		    	}
+		    // 	}
 		    	
-		    	if (sprite.key == "NW") {
+		    // 	if (sprite.key == "NW") {
 		    		
-		    		NWdown = true;
+		    // 		NWdown = true;
 			    	
-		    	}
+		    // 	}
 		    	
-		    	if (sprite.key == "NE") {
+		    // 	if (sprite.key == "NE") {
 		    		
-		    		NEdown = true;
+		    // 		NEdown = true;
 			    	
-		    	}
+		    // 	}
 		    	
-		    	if (sprite.key == "E") {
+		    // 	if (sprite.key == "E") {
 		    		
-		    		Edown = true;
+		    // 		Edown = true;
 			    	
-		    	}
+		    // 	}
 		    	
-		    	if (sprite.key == "W") {
+		    // 	if (sprite.key == "W") {
 		    		
-		    		Wdown = true;
+		    // 		Wdown = true;
 			    	
-		    	}
+		    // 	}
 		    	
 		    
-		    }
+		    // }
 		    
 		    
-		    function onUp(sprite, pointer) {
+		    // function onUp(sprite, pointer) {
 		    
-		    	Ndown = false;
-		    	Sdown = false;
-		    	SEdown = false;
-		    	SWdown = false;
-		    	NEdown = false;
-		    	NWdown = false;
-		    	Edown = false;
-		    	Wdown = false;
+		    // 	Ndown = false;
+		    // 	Sdown = false;
+		    // 	SEdown = false;
+		    // 	SWdown = false;
+		    // 	NEdown = false;
+		    // 	NWdown = false;
+		    // 	Edown = false;
+		    // 	Wdown = false;
 		    	
-		    }
+		    // }
 		    
-		    controls = game.add.group();
-		    controls.add(cN);
-		    controls.add(cS);
-		    controls.add(cW);
-		    controls.add(cE);
-		    controls.add(cNE);
-		    controls.add(cNW);
-		    controls.add(cSE);
-		    controls.add(cSW);
+		    // controls = game.add.group();
+		    // controls.add(cN);
+		    // controls.add(cS);
+		    // controls.add(cW);
+		    // controls.add(cE);
+		    // controls.add(cNE);
+		    // controls.add(cNW);
+		    // controls.add(cSE);
+		    // controls.add(cSW);
 		    
-		    controls.alpha = 0.6;
+		    // controls.alpha = 0.6;
 		    
 	        // Create the player	        
 	        player = new Player(game, obstacleGroup, "Player1");
 
 	        game.physics.isoArcade.enable(player.sprite);
+
+	        player.sprite.body.collideWorldBounds = true;
 
 	        game.camera.follow(player.sprite);
 
@@ -415,8 +417,9 @@ var init = function () {
 	        
 	    	// Move the player
 
-	    	this.controls.input();
-	    	this.controls.movement(player.sprite);
+	    	//this.controls.input(game, player.sprite);
+	    		
+	    	this.controls.movement(player.sprite, player.speed);
 	    	/*
 	        var speed = 100;
 

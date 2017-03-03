@@ -1,7 +1,7 @@
 "use strict";
 
-var Controls = require("./app/classes/Controls");
-var Player = require("./app/classes/Player");
+var PlayerController = require("./app/classes/controller/PlayerController");
+var Player = require("./app/classes/model/Player");
 
 var width = window.innerWidth;
 var height = window.innerHeight;
@@ -397,29 +397,33 @@ var init = function () {
 		    // controls.alpha = 0.6;
 		    
 	        // Create the player	        
-	        player = new Player(game, obstacleGroup, "Player1");
+	        this.player = new Player(game, obstacleGroup, "Player1");
 
-	        game.physics.isoArcade.enable(player.sprite);
+	        game.physics.isoArcade.enable(this.player.sprite);
 
-	        player.sprite.body.collideWorldBounds = true;
+	        this.player.sprite.body.collideWorldBounds = true;
 
-	        game.camera.follow(player.sprite);
+	        game.camera.follow(this.player.sprite);
 
 	        // Setup controls
 
 	        // Init movements
-	        this.controls = new Controls(game);
+	        this.playerController = new PlayerController(game);
 
 	        
 	        //Movement.init(game);   
 	    },
 	    update: function () {
-	        
+	        this.playerController.update(this.player);
+	        this.player.draw();
+	        //this.playerController.movement(player);
+
+
 	    	// Move the player
 
 	    	//this.controls.input(game, player.sprite);
 	    		
-	    	this.controls.movement(player);
+	    	
 	    	/*
 	        var speed = 100;
 
@@ -510,35 +514,35 @@ var init = function () {
         
 	        game.physics.isoArcade.collide(obstacleGroup);
 	        
-	        game.physics.isoArcade.overlap(marker, player.sprite ,function(e){
+	        game.physics.isoArcade.overlap(marker, this.player.sprite ,function(e){
 	        	e.destroy();
 	        	
 	        	addItem();
 	        	
 	        });
 	        
-	        game.physics.isoArcade.overlap(marker2, player.sprite ,function(e){
+	        game.physics.isoArcade.overlap(marker2, this.player.sprite ,function(e){
 	        	e.destroy();
 	        	
 	        	addItem();
 	        	
 	        });
 	        
-	        game.physics.isoArcade.overlap(marker3, player.sprite ,function(e){
+	        game.physics.isoArcade.overlap(marker3, this.player.sprite ,function(e){
 	        	e.destroy();
 	        	
 	        	addItem();
 	        	
 	        });
 	        
-	        game.physics.isoArcade.overlap(marker4, player.sprite ,function(e){
+	        game.physics.isoArcade.overlap(marker4, this.player.sprite ,function(e){
 	        	e.destroy();
 	        	
 	        	addItem();
 	        	
 	        });
 	               
-	       check = game.physics.isoArcade.overlap(exitMarker, player.sprite ,function(e){
+	       check = game.physics.isoArcade.overlap(exitMarker, this.player.sprite ,function(e){
 	        	
 	        	if (currentItemCount >= totalItemCount){
 	        		console.log("END GAME GOOD! :)");

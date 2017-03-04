@@ -415,7 +415,8 @@ var init = function () {
 	    },
 	    update: function () {
 	        this.playerController.update(this.player);
-	        this.player.draw();
+	        this.player.update();
+	        
 	        //this.playerController.movement(player);
 
 
@@ -563,7 +564,7 @@ var init = function () {
 	        
 	    },
 	    render: function () {
-	      
+	    	this.player.draw();
 	    }
 	};
 

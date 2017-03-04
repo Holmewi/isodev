@@ -15,7 +15,7 @@ function PlayerController(game) {
 
 PlayerController.prototype.update = function(player) {
 
-    var direction = ''; 
+    var direction = '';
 
     // Player jumps
     if (this.jump.isDown) {
@@ -60,6 +60,7 @@ PlayerController.prototype.update = function(player) {
         direction = 'E';
     } else {
         direction = '';
+        player.idle();
     }
 
     player.move(direction);

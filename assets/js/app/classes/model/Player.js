@@ -2,11 +2,11 @@
 
 var State = {
     'Idle' : true,
-    'Walk' : false,
+    'Moving' : false,
     'Sprint' : false,
     'Crouch' : false,
-    'InAir' : false,
-    'JumpUp' : false,
+    'Jump' : false,
+    'Fall' : false,
     'Land' : false
 };
 
@@ -20,10 +20,12 @@ function Player(game, group, name) {
     this.maxSpeed = 100;
     this.movementSpeed = this.maxSpeed;
     this.acceleration = 5;
+    this.jumpHeight = 175;
     this.moveX;
     this.moveY;
 
     this.facing;
+    this.currentState;
 
 	this.sprite = game.add.isoSprite(350, 280, 0, 'characterAnim', 0, group);
     this.sprite.alpha = 0.6;
@@ -39,23 +41,41 @@ function Player(game, group, name) {
     this.sprite.animations.add('SE', [56, 57, 58, 59, 60, 61, 62, 63], 10, true);
 };
 
+Player.prototype.update = function() {
+    //console.log(this.sprite.body.z);
+
+    if (!this.sprite.body.onFloor()) {
+        if (this.sprite.body.velocity.z >= 0 && this.sprite.body.z < 35) {
+            State.Jump = true;
+        } else if (this.sprite.body.velocity.z < 0 && this.sprite.body.z < 15) {
+            State.Fall = false;
+            State.Land = true;
+        } else {
+            State.Fall = true;
+            State.Jump = false;
+        }
+    } else {
+        State.Land = false;
+        if (State.Crouch) {
+            this.currentState = 'Crouch';
+        } else if (State.Sprint) {
+            this.currentState = 'Sprint';
+        } else {
+            this.currentState = '';
+        }
+    } 
+};
+
 Player.prototype.jump = function() {
 
-    if (this.sprite.body.onFloor()) {        
-        this.sprite.body.velocity.z = 175;
-        State.InAir = true;
-        //TODO: Add jump animations
-    } else if (!player.sprite.body.onFloor()) {
-        //TODO: Add falling animations
-    } else if (player.sprite.body.onFloor() && State.InAir) {
-        State.InAir = false;
-        //TODO: Add land animations
+    if (this.sprite.body.onFloor()) {    
+        this.sprite.body.velocity.z = this.jumpHeight;
     }
 };
 
 Player.prototype.sprint = function(keyIsDown) {
 
-    if (keyIsDown && !State.Crouch) {
+    if (keyIsDown && !State.Crouch && !State.Idle) {
         State.Sprint = true;
         this.movementSpeed = this.maxSpeed * 2;
     } else if (State.Sprint) {
@@ -65,6 +85,7 @@ Player.prototype.sprint = function(keyIsDown) {
 };
 
 Player.prototype.crouch = function() {
+
     if (!State.Crouch) {
         State.Crouch = true;
         this.movementSpeed = this.maxSpeed / 2;
@@ -75,7 +96,13 @@ Player.prototype.crouch = function() {
 };
 
 Player.prototype.move = function(direction) {
+
     this.facing = direction;
+
+    if (direction) {
+        State.Idle = false;
+        State.Moving = true;
+    }
 
     if (this.sprite.body.onFloor()) {
         switch (direction) {
@@ -117,11 +144,11 @@ Player.prototype.move = function(direction) {
         }
     }
     
-
     this.moving(this.moveX, this.moveY);
 };
 
 Player.prototype.moving = function(x, y) {
+
     if (this.sprite.body.velocity.x > x) {
         this.sprite.body.velocity.x = this.sprite.body.velocity.x - this.acceleration;
     }
@@ -134,22 +161,41 @@ Player.prototype.moving = function(x, y) {
     else {
         this.sprite.body.velocity.y = this.sprite.body.velocity.y + this.acceleration;
     }
-}
+};
 
-Player.prototype.draw = function(direction, state) {
+Player.prototype.idle = function() {
 
-    //console.log(direction);
+    if (this.sprite.body.velocity.x <= 0 && this.sprite.body.velocity.y <= 0) {
+        State.Idle = true;
+        State.Moving = false;
+    }
+};
 
-    // While running pass state continuously
-	this.sprite.animations.play(this.facing);
+Player.prototype.draw = function() {
 
-    // While jumping up just pass one state
-
-    // While in air just pass one state
-
-    // While sneaking pass state continuously
-
-    // While sprinting just speed up running animation?
+    if (State.Idle) {
+        if (State.Jump) {
+            // Play jump animation
+        } else if (State.Fall) {
+            // PLay fall animation
+        } else if (State.Land) {
+            // Play land animation
+        } else if (State.Crouch) {
+            // Play idle animation
+        } else {
+            this.sprite.animations.stop();
+        } 
+    } else {
+        if (State.Jump) {
+            // Play jump animation with current state
+        } else if (State.Fall) {
+            // PLay fall animation with current state
+        } else if (State.Land) {
+            // Play land animation with current state
+        } else {
+            this.sprite.animations.play(this.currentState + this.facing);
+        }
+    }
 };
 
 module.exports = Player;
